@@ -37,14 +37,24 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		wp_readme_to_markdown: {
+			your_target: {
+				files: {
+					'README.md': 'readme.txt'
+				}
+			},
+		},
+
 	});
 
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-postcss');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
 
 	grunt.registerTask( 'default', [ 'styles' ] );
 	grunt.registerTask( 'styles', [ 'sass', 'postcss' ] );
+	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
 
 	grunt.util.linefeed = '\n';
 
