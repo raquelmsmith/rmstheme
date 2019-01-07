@@ -1,0 +1,93 @@
+body.blog {
+    .blog-holder {
+        margin: 4rem 0;
+        &:first-child {
+            margin-top: 0;
+        }
+        .entry-content {
+            background-color: $white;
+            box-shadow: $box-shadow;
+            border: none;
+            color: $dark-gray;
+            h2 {
+                a {
+                    font-weight: bold;
+                    @include underline(
+                        $background: $white,
+                        $text: $seafoam,
+                        $selection: $seafoam,
+                        $position: 95%,
+                        $width: 4px
+                    );
+                    &:hover {
+                        color: $dark-gray;
+                    }
+                }
+            }
+            .post-meta {
+                font-size: 0.8rem;
+                .post-author {
+                    display: none;
+                }
+                .post-date {
+                    border-top: none;
+                    font-size: 0.8rem;
+                    a {
+                        color: $dark-gray;
+                        text-decoration: none;
+                        @include underline(
+                            $background: $white,
+                            $text: $white,
+                            $selection: $white,
+                            $position: 100%,
+                            $width: 0px
+                        );
+                    }
+                    .align-left {
+                        float: none;
+                        display: inline-block;
+                    }
+                    .align-right {
+                        float: none;
+                        display: inline-block;
+                        &::before {
+                            content: " - ";
+                        }
+                    }
+                }
+            }
+            p {
+                color: $dark-gray;
+                a {
+                    color: $dark-gray;
+                    @include underline(
+                        $background: $white,
+                        $text: $salmon,
+                        $selection: $salmon,
+                        $position: 100%,
+                        $width: 2px
+                    );
+                }
+            }
+            code {
+                background: $seafoam-transparent;
+                border: none;
+                box-shadow: none;
+                color: $dark-gray;
+                padding: 0 12px 2px;
+            }
+            .more-link-wrapper {
+                a {
+                    background-color: $salmon;
+                    border: none;
+                    box-shadow: none;
+                    text-shadow: none;
+                    color: $white;
+                    &:hover {
+                        background: $salmon;
+                    }
+                }
+            }
+        }
+    }
+}

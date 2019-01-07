@@ -1,0 +1,9 @@
+#page footer.footer {
+    background-color: $dark-gray;
+    color: $super-light-gray;
+    padding-bottom: 2rem;
+    width: 100%;
+    .content {
+        max-width: 1200px;
+    }
+}

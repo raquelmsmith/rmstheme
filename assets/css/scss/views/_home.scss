@@ -1,0 +1,53 @@
+body.home.page-template-template-full {
+    background-color: $dark-gray;
+    color: $super-light-gray;
+    #page {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        .site-main {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            .content {
+                max-width: $site-width;
+                margin: auto;
+                .entry-header {
+                    display: none;
+                }
+                .entry-content {
+                    h2 {
+                        font-size: 5rem;
+                    }
+                    p {
+                        $color: $light-gray;
+                        font-family: $quicksand;
+                        font-size: 1.3rem;
+                        max-width: 800px;
+                        font-weight: 300;
+                        a {
+                            text-decoration: none;
+                            transition: none;
+                            @include underline(
+                                $background: $dark-gray,
+                                $text: $salmon,
+                                $selection: $seafoam,
+                                $position: 97%
+                            );
+                            &:hover {
+                                color: $salmon;
+                                &:visited {
+                                    color: $salmon;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        footer .content {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    }
+}

@@ -1,0 +1,176 @@
+body.single-post {
+    background-color: $super-light-gray;
+    color: $dark-gray;
+    #page {
+        .content {
+            max-width: 900px;
+            h1.entry-header {
+                text-align: left;
+                font-size: 5rem;
+                font-weight: 600;
+                line-height: 1.1em;
+                margin-bottom: 2rem;
+                color: $dark-gray;
+            }
+            .entry-content {
+                max-width: 900px;
+                font-size: 18px;
+                a {
+                    color: $dark-gray;
+                    @include underline(
+                        $background: $super-light-gray,
+                        $text: $salmon,
+                        $selection: $salmon,
+                        $position: 100%
+                    );
+                }
+                code {
+                    background: $seafoam-transparent;
+                    border: none;
+                    box-shadow: none;
+                    color: $dark-gray;
+                    padding: 0 12px 2px;
+                }
+                figure {
+                    display: flex;
+                    img {
+                        box-shadow: $box-shadow;
+                        margin-top: 2rem;
+                        margin-bottom: 2rem;
+                    }
+                }
+                .post-meta {
+                    font-style: italic;
+                    font-family: $quicksand;
+                    a {
+                        @include underline(
+                            $background: $super-light-gray,
+                            $text: $super-light-gray,
+                            $selection: $super-light-gray,
+                            $position: 100%
+                        );
+                    }
+                    .post-author {
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                        span.meta-prep.meta-prep-author {
+                            display: none;
+                        }
+                    }
+                    .post-taxonomy {
+                        border-top: none;
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                    }
+                    .post-navigation {
+                        border-top: none;
+                        margin-top: 2rem;
+                        a {
+                            @include underline(
+                                $background: $super-light-gray,
+                                $text: $salmon,
+                                $selection: $salmon,
+                                $position: 100%
+                            );
+                        }
+                        .previous-post {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+            #comments {
+                max-width: 600px;
+                .commentlist {
+                    li {
+                        border: none;
+                        margin: 3rem 0;
+                    }
+                    .pingback {
+                        a {
+                            color: $dark-gray;
+                            @include underline(
+                                $background: $super-light-gray,
+                                $text: $salmon,
+                                $selection: $salmon,
+                                $position: 100%
+                            );
+                        }
+                    }
+                    li.comment {
+                        .comment-author {
+                            font-weight: bold;
+                            font-size: 1.2rem;
+                            time {
+                                font-weight: 400;
+                                font-style: italic;
+                                font-size: 0.9rem;
+                                color: #333;
+                            }
+                            .avatar {
+                                display: none;
+                            }
+                        }
+                        .comment-content {
+                            background-color: $white;
+                            //box-shadow: $subtle-box-shadow;
+                            margin: 2rem;
+                            padding: 1rem 2rem;
+                            &::before {
+                                @include css-triangle(
+                                    $white,
+                                    up,
+                                    20px,
+                                    relative,
+                                    false
+                                );
+                                top: calc(-1rem - 20px);
+                            }
+                            .reply {
+                                float: none;
+                                a {
+                                    background-color: transparent;
+                                    color: $salmon;
+                                    border: none;
+                                    text-shadow: none;
+                                    box-shadow: none;
+                                    padding: 0;
+                                    text-transform: capitalize;
+                                }
+                            }
+                        }
+                    }
+                }
+                .comment-respond {
+                    background-color: $white;
+                    box-shadow: $box-shadow;
+                    margin-bottom: 4rem;
+                    margin-top: 2rem;
+                    padding: 2rem;
+                    .comment-reply-title {
+                        font-weight: bold;
+                        color: $salmon;
+                    }
+
+                    form {
+                        textarea,
+                        input {
+                            border: none;
+                            box-shadow: none;
+                            background-color: $super-light-gray;
+                        }
+
+                        input.submit {
+                            font-weight: bold;
+                            color: $white;
+                            background-color: $seafoam;
+                            padding: 0.75rem;
+                            margin-bottom: 0;
+                            font-family: $quicksand;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

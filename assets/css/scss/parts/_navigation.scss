@@ -1,0 +1,52 @@
+#header {
+    background-color: $dark-gray;
+    #nav-bar {
+        margin: auto;
+        max-width: $site-width;
+        border-bottom: 0;
+        .site-title {
+            font-family: $quicksand;
+            font-size: 1.5rem;
+            font-weight: 300;
+            padding-left: 48px;
+            text-transform: lowercase;
+            a {
+                color: $super-light-gray;
+                @include underline(
+                    $background: $dark-gray,
+                    $text: $seafoam,
+                    $selection: $seafoam,
+                    $position: 100%
+                );
+            }
+        }
+        .navigation-main {
+            .menu {
+                li {
+                    padding: 0 12px;
+                    a {
+                        border: none;
+                        color: $super-light-gray;
+                        font-size: 1.1rem;
+                        font-weight: 300;
+                        line-height: normal;
+                        padding: 0;
+                        -webkit-transition: none;
+                        &[href*="mailto:"]::before {
+                            content: none;
+                        }
+                        &:hover {
+                            @include underline(
+                                $background: $dark-gray,
+                                $text: $seafoam,
+                                $selection: $seafoam,
+                                $position: 100%
+                            );
+                            color: $super-light-gray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
