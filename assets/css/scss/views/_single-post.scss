@@ -6,15 +6,35 @@ body.single-post {
             max-width: 900px;
             h1.entry-header {
                 text-align: left;
-                font-size: 5rem;
+                font-size: 3rem;
                 font-weight: 600;
                 line-height: 1.1em;
-                margin-bottom: 2rem;
                 color: $dark-gray;
+                @media screen and (min-width: $media-medium) {
+                    font-size: 3.5rem;
+                    margin-bottom: 2rem;
+                }
+                @media screen and (min-width: $media-large) {
+                    font-size: 5rem;
+                }
             }
             .entry-content {
                 max-width: 900px;
                 font-size: 18px;
+                background-color: $white;
+                padding: 2rem;
+                @media screen and (min-width: $media-medium) {
+                    padding: 3rem;
+                }
+                @media screen and (min-width: $media-large) {
+                    padding: 3rem;
+                }
+                p {
+                    color: $dark-gray;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                }
                 a {
                     color: $dark-gray;
                     @include underline(
@@ -23,13 +43,6 @@ body.single-post {
                         $selection: $salmon,
                         $position: 100%
                     );
-                }
-                code {
-                    background: $seafoam-transparent;
-                    border: none;
-                    box-shadow: none;
-                    color: $dark-gray;
-                    padding: 0 12px 2px;
                 }
                 figure {
                     display: flex;
@@ -81,31 +94,39 @@ body.single-post {
             }
             #comments {
                 max-width: 600px;
+                border: none;
                 .commentlist {
                     li {
                         border: none;
-                        margin: 3rem 0;
-                    }
-                    .pingback {
-                        a {
-                            color: $dark-gray;
-                            @include underline(
-                                $background: $super-light-gray,
-                                $text: $salmon,
-                                $selection: $salmon,
-                                $position: 100%
-                            );
+                        margin: 0;
+                        &.depth-1 {
+                            margin: 3rem 0;
+                        }
+                        &.pingback {
+                            margin: 2rem 0;
+                            a {
+                                color: $dark-gray;
+                                @include underline(
+                                    $background: $super-light-gray,
+                                    $text: $salmon,
+                                    $selection: $salmon,
+                                    $position: 100%
+                                );
+                            }
                         }
                     }
                     li.comment {
                         .comment-author {
                             font-weight: bold;
                             font-size: 1.2rem;
-                            time {
-                                font-weight: 400;
-                                font-style: italic;
-                                font-size: 0.9rem;
-                                color: #333;
+                            a {
+                                text-decoration: none;
+                                time {
+                                    font-weight: 400;
+                                    font-style: italic;
+                                    font-size: 0.9rem;
+                                    color: #333;
+                                }
                             }
                             .avatar {
                                 display: none;
@@ -143,10 +164,10 @@ body.single-post {
                 }
                 .comment-respond {
                     background-color: $white;
-                    box-shadow: $box-shadow;
                     margin-bottom: 4rem;
                     margin-top: 2rem;
                     padding: 2rem;
+                    border-top: 5px solid $salmon;
                     .comment-reply-title {
                         font-weight: bold;
                         color: $salmon;

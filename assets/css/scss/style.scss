@@ -1,8 +1,9 @@
 @import "settings";
 
+@import "parts/navigation";
+@import "parts/footer";
+@import "parts/site-wide";
+
 @import "views/blog-index";
 @import "views/home";
 @import "views/single-post";
-
-@import "parts/navigation";
-@import "parts/footer";
