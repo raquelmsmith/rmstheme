@@ -56,6 +56,7 @@ class Raquel_M_Smith {
 	 */
 	private function setup_actions() {
 		add_action( 'init', array( 'Raquel_M_Smith', 'action_init' ) );
+		add_action('init', array( 'Raquel_M_Smith', 'redirect_to_backend' ) );
 		add_action( 'wp_enqueue_scripts', array( 'Raquel_M_Smith', 'rms_enqueue_styles' ) );
 		add_action('save_post', array( 'Raquel_M_Smith', 'action_save_post_trigger_netlify_deploy' ), 10, 3 );
 	}
@@ -106,6 +107,42 @@ class Raquel_M_Smith {
 
 	public static function filter_excerpt_more( $link ) {
 		return ' ...';
+	}
+
+	public static function redirect_to_backend() {
+		if ( !is_admin() && !self::is_wp_login() && !self::is_rest() && !is_user_logged_in() ) {
+			wp_redirect( site_url( 'wp-admin' ) );
+			exit();
+		}
+	}
+
+    /**
+     * Checks if the current request is a WP REST API request.
+     * 
+     * Case #1: After WP_REST_Request initialisation
+     * Case #2: Support "plain" permalink settings
+     * Case #3: URL Path begins with wp-json/ (your REST prefix)
+     *          Also supports WP installations in subfolders
+     * 
+     * @returns boolean
+     * @author matzeeable
+     */
+    public function is_rest() {
+        $prefix = rest_get_url_prefix( );
+        if (defined('REST_REQUEST') && REST_REQUEST // (#1)
+            || isset($_GET['rest_route']) // (#2)
+                && strpos( trim( $_GET['rest_route'], '\\/' ), $prefix , 0 ) === 0)
+            return true;
+
+        // (#3)
+        $rest_url = wp_parse_url( site_url( $prefix ) );
+        $current_url = wp_parse_url( add_query_arg( array( ) ) );
+        return strpos( $current_url['path'], $rest_url['path'], 0 ) === 0;
+	}
+	
+	public function is_wp_login(){
+		$ABSPATH_MY = str_replace(array('\\','/'), DIRECTORY_SEPARATOR, ABSPATH);
+		return ((in_array($ABSPATH_MY.'wp-login.php', get_included_files()) || in_array($ABSPATH_MY.'wp-register.php', get_included_files()) ) || (isset($_GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php') || $_SERVER['PHP_SELF']== '/wp-login.php');
 	}
 }
 
