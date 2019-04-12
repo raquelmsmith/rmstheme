@@ -64,6 +64,7 @@ class Raquel_M_Smith {
 	 * Registery of filters for the theme.
 	 */
 	private function setup_filters() {
+		add_filter('excerpt_more', array( 'Raquel_M_Smith', 'filter_excerpt_more' ) );
 	}
 
 	/**
@@ -78,6 +79,8 @@ class Raquel_M_Smith {
 	 * Behaviors to perform on init
 	 */
 	public static function action_init() {
+		remove_action( 'the_content_more_link', 'organic_origin_add_more_link_class', 10 );
+		remove_filter( 'excerpt_more', 'organic_origin_excerpt_more' );
 	}
 
 	/**
@@ -99,6 +102,10 @@ class Raquel_M_Smith {
 		if ( is_wp_error( $response ) ) {
 			wp_mail( 'hello@raquelmsmith.com', 'Saving post failed to deploy', 'Saving post ' . $post_id . ' failed to trigger a Netlify deploy. Try again!' );
 		}
+	}
+
+	public static function filter_excerpt_more( $link ) {
+		return ' ...';
 	}
 }
 
