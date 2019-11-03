@@ -59,6 +59,7 @@ class Raquel_M_Smith {
 		add_action('init', array( 'Raquel_M_Smith', 'redirect_to_backend' ) );
 		add_action( 'wp_enqueue_scripts', array( 'Raquel_M_Smith', 'rms_enqueue_styles' ) );
 		add_action('save_post', array( 'Raquel_M_Smith', 'action_save_post_trigger_netlify_deploy' ), 10, 3 );
+		add_action( 'rest_api_init', array( 'Raquel_M_Smith', 'action_rest_api_init_cors' ), 15 );
 	}
 
 	/**
@@ -143,6 +144,16 @@ class Raquel_M_Smith {
 	public function is_wp_login(){
 		$ABSPATH_MY = str_replace(array('\\','/'), DIRECTORY_SEPARATOR, ABSPATH);
 		return ((in_array($ABSPATH_MY.'wp-login.php', get_included_files()) || in_array($ABSPATH_MY.'wp-register.php', get_included_files()) ) || (isset($_GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php') || $_SERVER['PHP_SELF']== '/wp-login.php');
+	}
+
+	public function action_rest_api_init_cors() {
+		remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+		add_filter( 'rest_pre_serve_request', function( $value ) {
+			header( 'Access-Control-Allow-Origin: https://raquelmsmith.com' );
+			header( 'Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE' );
+			header( 'Access-Control-Allow-Credentials: true' );
+			return $value;
+		});
 	}
 }
 
