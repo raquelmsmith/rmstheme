@@ -67,6 +67,7 @@ class Raquel_M_Smith {
 	 */
 	private function setup_filters() {
 		add_filter('excerpt_more', array( 'Raquel_M_Smith', 'filter_excerpt_more' ) );
+		add_filter( 'rest_allow_anonymous_comments', '__return_true' );
 	}
 
 	/**
