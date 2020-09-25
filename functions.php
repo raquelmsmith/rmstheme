@@ -100,9 +100,11 @@ class Raquel_M_Smith {
 	}
 
 	public static function action_save_post_trigger_netlify_deploy( $post_id, $post, $update ) {
-		$response = wp_remote_post( 'https://api.netlify.com/build_hooks/5c9e8056b1c202018ab47de4' );
-		if ( is_wp_error( $response ) ) {
-			wp_mail( 'hello@raquelmsmith.com', 'Saving post failed to deploy', 'Saving post ' . $post_id . ' failed to trigger a Netlify deploy. Try again!' );
+		if ( get_post_status ( $post_id ) == 'publish' ) {
+			$response = wp_remote_post( 'https://api.netlify.com/build_hooks/5c9e8056b1c202018ab47de4' );
+			if ( is_wp_error( $response ) ) {
+				wp_mail( 'hello@raquelmsmith.com', 'Saving post failed to deploy', 'Saving post ' . $post_id . ' failed to trigger a Netlify deploy. Try again!' );
+			}
 		}
 	}
 
